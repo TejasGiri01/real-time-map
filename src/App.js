@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import MapComponent from "./components/MapComponent";
+import LocationForm from "./components/LocationForm";
 
 function App() {
+  const [initialPosition, setInitialPosition] = useState([51.505, -0.09]); // Default location
+  const [destination, setDestination] = useState([51.515, -0.1]); // Prevents null errors
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Real-Time Location Map</h1>
+      <LocationForm 
+        setInitialPosition={setInitialPosition} 
+        setDestination={setDestination} 
+      />
+      <MapComponent 
+        initialPosition={initialPosition} 
+        destination={destination} 
+      />
     </div>
   );
 }
